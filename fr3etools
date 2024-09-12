@@ -1,0 +1,38 @@
+rootcheck=$(id -u)
+	if [ "$rootcheck" -eq "0" ]; then
+	echo "root user detected, exiting"
+	exit
+else
+	echo "not root, proceeding"
+fi
+
+
+clear
+DIRECORY="programs"
+programs=()
+
+echo "fr3e-tools"
+echo "(cool title coming soon)"
+echo 
+echo "Select a program to run:"
+i=1
+for file in "$DIRECTORY"/*; do
+    if [ -x "$file" ] && [ -f "$file" ]; then  # Check if it's an executable file
+        programs+=("$file")  # Add the file to the array
+        echo "$i) $(basename "$file")"
+        ((i++))
+    fi
+done
+
+
+read -p "Enter the number of the program to run: " selection
+
+# Validate the selection
+if [[ "$selection" -ge 1 && "$selection" -lt "$i" ]]; then
+    # Get the selected program from the array
+    selected_program="${programs[$((selection - 1))]}"
+    echo "Running $selected_program..."
+    "$selected_program"  # Execute the selected program
+else
+    echo "Invalid selection. Please enter a number between 1 and $((i - 1))."
+fi
