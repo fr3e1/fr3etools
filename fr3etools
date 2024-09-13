@@ -1,3 +1,5 @@
+#!/bin/bash
+
 rootcheck=$(id -u)
 	if [ "$rootcheck" -eq "0" ]; then
 	echo "root user detected, exiting"
@@ -8,7 +10,7 @@ fi
 
 
 clear
-DIRECORY="programs"
+DIRECTORY="/home/senko/Documents/fr3etools/programs"
 programs=()
 
 echo "fr3e-tools"
