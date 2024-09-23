@@ -10,20 +10,17 @@ fi
 
 
 clear
-DIRECTORY="/home/senko/Documents/fr3etools/programs"
-programs=()
+programs=($(ls programs))
+i=1
 
 echo "fr3e-tools"
 echo "(cool title coming soon)"
 echo 
 echo "Select a program to run:"
 i=1
-for file in "$DIRECTORY"/*; do
-    if [ -x "$file" ] && [ -f "$file" ]; then  # Check if it's an executable file
-        programs+=("$file")  # Add the file to the array
-        echo "$i) $(basename "$file")"
-        ((i++))
-    fi
+for item in "${programs[@]}"; do
+	echo "$i. $programs"
+	((i++))
 done
 
 
